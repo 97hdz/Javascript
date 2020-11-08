@@ -6,6 +6,8 @@ const Mortals = [Men, Animals]
 const MenImmortal = false
 
 
+// the ! before the variable name means ' if its false ' in this case 'MenImmortal - NOs'
+
 if (!MenImmortal){
     console.log("All men are mortals")
     if (Men.includes(Socrates)){
