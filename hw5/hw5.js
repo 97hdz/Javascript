@@ -1,8 +1,9 @@
 
-const Value1 = 20
+const Value1 = 22
 const Label1 = "hours"
-const Value2 = 4
+const Value2 = 39
 const Label2 = "hours"
+const SingleLabel = ["day","minute","hour","second"]
 const OnlyLabel = ["seconds", "minutes", "hours", "days", "second", "minute", "hour", "day"]
 
 
@@ -10,57 +11,62 @@ const OnlyLabel = ["seconds", "minutes", "hours", "days", "second", "minute", "h
 function TimeAdder(val1,lab1,val2,lab2)
 {
 
-  console.log(" The initial input is " +val1,lab1,val2,lab2);
+console.log(" The initial input is " +val1,lab1,val2,lab2);
+
+//To see if there's an error at the lab1 or lab2
+if (val1>1 && SingleLabel.includes(lab1)) {
+  console.log("Error, is not "+lab1+" is "+lab1+"s")
+  return false
+}
+
+if (val2>1 && SingleLabel.includes(lab2)) {
+  console.log("Error, is not "+lab2+" is "+lab2+"s")
+  return false;
+}
 
   switch (lab1)
   {
     case "seconds" || "second" :
-          console.log(val2 + " Value 1 - seconds ");
     break;
 
     case "minutes" || "minute" :
            val1 = (val1*60)
-           console.log(val1 + " Value 1 - seconds ");
     break;
 
     case "hours" || "hour" :
            val1 = val1*60*60
-           console.log(val1 + " Value 1 - seconds ");
     break;
 
     case "days" || "day" :
            val1 = ((val1*60)*60)*24
-           console.log(val1 + " Value 1 - seconds ");
     break;
 
     default:
           console.log("Error value on Label1")
+          return false;
     break;
   }
 
   switch (lab2)
   {
     case "seconds" || "second" :
-          console.log(val2 + " Value 2 - seconds ");
     break;
 
     case "minutes" || "minute" :
            val2 = (val2*60)
-           console.log(val2 + " Value 2 - seconds ");
     break;
 
     case "hours" || "hour" :
            val2 = val2*60*60
-           console.log(val2 + " Value 2 - seconds ");
     break;
 
     case "days" || "day" :
            val2 = ((val2*60)*60)*24
-           console.log(val2 + " Value 2 - seconds ");
     break;
 
     default:
           console.log("Error value on Label2")
+          return false;
     break;
   }
 
@@ -79,8 +85,8 @@ function TimeAdder(val1,lab1,val2,lab2)
       if (val3>23.99)
       {
         val3 = val3 / 24
-        lab3 = " day "
-        
+        lab3 = " days "
+
       }
     }
   }
