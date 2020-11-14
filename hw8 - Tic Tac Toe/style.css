@@ -1,20 +1,23 @@
 
 /* -------- Creating the shape of the squares -------- */
 .shape {
-   background-color: #ED821C;
+   background-color: #2CA0C8;
    width: 200px;
    height: 200px;
 }
 
 /* -------- Creating the board style -------- */
-.Board {
-  background-color : ;
+.Board > div{
+  background-color : red;
+  display: flex;
+  justify-content: center;
 }
 
 /* -------- Position -------- */
 .primera, .segunda, .tercera{
   display: flex;
   justify-content: center;
+
 }
 
 /*  Position of innerText */
@@ -25,4 +28,5 @@
 /* ------ Borders ---------- */
 .Board div > div{
   border: 5px solid;
+  border-color: white;
 }
