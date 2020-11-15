@@ -1,16 +1,51 @@
 
+html{
+  background-color: black
+}
 /* -------- Creating the shape of the squares -------- */
 .shape {
-   background-color: #2CA0C8;
+   background-color: black;
    width: 200px;
    height: 200px;
 }
 
 /* -------- Creating the board style -------- */
 .Board > div{
-  background-color : red;
   display: flex;
   justify-content: center;
+  margin-left: 300px;;
+  margin-right: 300px;
+}
+
+.Board {
+  margin-top: 200px;
+}
+
+#one, #four, #seven{
+  border-left: none;
+}
+
+#one, #two, #three{
+  border-top: none;
+}
+
+#three, #six, #nine{
+  border-right: none;
+}
+
+#seven, #eight, #nine{
+  border-bottom: none;
+}
+
+/*--- Images Styles ----*/
+#O{
+  border-radius: 25% 54% 36%;
+  background-color: blue;
+}
+
+#X{
+  border-radius: 67% 24% 76%;
+  background-color: red;
 }
 
 /*  Position of innerText */
@@ -24,4 +59,5 @@
 .Board div > div{
   border: 5px solid;
   border-color: white;
+  cursor: pointer;
 }
