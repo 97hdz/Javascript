@@ -13,16 +13,11 @@
   justify-content: center;
 }
 
-/* -------- Position -------- */
-.primera, .segunda, .tercera{
-  display: flex;
-  justify-content: center;
-
-}
-
 /*  Position of innerText */
 .primera div , .segunda div , .tercera div {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ------ Borders ---------- */
