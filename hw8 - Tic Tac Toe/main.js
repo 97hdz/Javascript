@@ -4,12 +4,14 @@ const cells = document.querySelectorAll('.shape')
 const currentX = '<img id="X" src="duaBW.png">'
 const currentO = '<img id="O" src="dua.png" width="100" height="100">'
 let currentTurn
+let xDontWin
+let oDontWin
 
 // ----------- EveryClick ---------------
 let hasclick = (event) => {
   const currentXO = currentTurn ? currentX : currentO
   document.getElementById(event.target.id).innerHTML = currentXO
-  swapTurns ();
+  swapTurns();
   xWins();
   oWins();
   draw();
@@ -17,13 +19,13 @@ let hasclick = (event) => {
 
 // ------------ Listeners ---------------
 for (const DivCells of cells){
-  DivCells.addEventListener('click', hasclick)
+  DivCells.addEventListener('click', hasclick, {once:true})
 }
 
 // ------------ Functions --------------
 let swapTurns = () => currentTurn = !currentTurn
-const WinMessageX = () => alert('Red Won bitch')
-const WinMessageO = () => alert('Blue Won bitch')
+const WinMessageX = () => {alert('Red Won');window.location.reload()}
+const WinMessageO = () => {alert('Blue Won');window.location.reload()}
 
 // ------------ Winning conditions -----------
 const xWins = () => {
@@ -43,6 +45,8 @@ const xWins = () => {
     WinMessageX();
   } else if (currentX==cells[6].innerHTML && currentX==cells[7].innerHTML && currentX==cells[8].innerHTML){
     WinMessageX();
+  } else {
+    xDontWin = true;
   }
 }
 const oWins = () => {
@@ -62,10 +66,17 @@ const oWins = () => {
     WinMessageO();
   } else if (currentO==cells[6].innerHTML && currentO==cells[7].innerHTML && currentO==cells[8].innerHTML){
     WinMessageO();
+  } else {
+    oDontWin = true;
   }
 }
+
 const draw = () => {
-  if (cells[0].innerHTML && cells[1].innerHTML && cells[2].innerHTML && !oWins() && !xWins()){
-    console.log("fanculo")
+  if (cells[0].innerHTML && cells[1].innerHTML && cells[2].innerHTML && cells[3].innerHTML
+      && cells[3].innerHTML && cells[4].innerHTML && cells[5].innerHTML && cells[6].innerHTML
+      && cells[7].innerHTML && cells[8].innerHTML){
+        if(oDontWin && xDontWin){
+          alert("DRAW");window.location.reload()
+        }
   }
 }
