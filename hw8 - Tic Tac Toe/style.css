@@ -38,14 +38,15 @@ html{
 }
 
 /*--- Images Styles ----*/
+
 #O{
-  border-radius: 25% 54% 36%;
-  background-color: blue;
+  font-size : 70px ;
+  color : blue;
 }
 
 #X{
-  border-radius: 67% 24% 76%;
-  background-color: red;
+  font-size : 70px ;
+  color : red;
 }
 
 /*  Position of innerText */

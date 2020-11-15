@@ -1,9 +1,9 @@
 
 // Selecting all the divs elements inside of board
 const cells = document.querySelectorAll('.shape')
-const currentX = '<img id="X" src="duaBW.png">'
-const currentO = '<img id="O" src="dua.png" width="100" height="100">'
-let currentTurn
+const currentX = '<p id="X">X</p>'
+const currentO = '<p id="O">O</p>'
+let currentTurn = true
 let xDontWin
 let oDontWin
 
@@ -24,8 +24,8 @@ for (const DivCells of cells){
 
 // ------------ Functions --------------
 let swapTurns = () => currentTurn = !currentTurn
-const WinMessageX = () => {alert('Red Won');window.location.reload()}
-const WinMessageO = () => {alert('Blue Won');window.location.reload()}
+const WinMessageX = () => {alert('X has won!');window.location.reload()}
+const WinMessageO = () => {alert('O has won!');window.location.reload()}
 
 // ------------ Game Conditions -----------
 const xWins = () => {
@@ -49,6 +49,7 @@ const xWins = () => {
     xDontWin = true; // if x doesnt win now we have 1 of 2 condition to draw
   }
 }
+
 const oWins = () => {
   if(currentO==cells[0].innerHTML && currentO==cells[3].innerHTML && currentO==cells[6].innerHTML){
     WinMessageO();
@@ -76,7 +77,7 @@ const draw = () => {
       && cells[3].innerHTML && cells[4].innerHTML && cells[5].innerHTML && cells[6].innerHTML
       && cells[7].innerHTML && cells[8].innerHTML){
         if(oDontWin && xDontWin){
-          alert("DRAW");window.location.reload()
+          alert("Cats game!");window.location.reload()
         }
   }
 }
