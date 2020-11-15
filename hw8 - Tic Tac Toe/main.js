@@ -27,7 +27,7 @@ let swapTurns = () => currentTurn = !currentTurn
 const WinMessageX = () => {alert('Red Won');window.location.reload()}
 const WinMessageO = () => {alert('Blue Won');window.location.reload()}
 
-// ------------ Winning conditions -----------
+// ------------ Game Conditions -----------
 const xWins = () => {
   if(currentX==cells[0].innerHTML && currentX==cells[3].innerHTML && currentX==cells[6].innerHTML){
     WinMessageX();
@@ -46,7 +46,7 @@ const xWins = () => {
   } else if (currentX==cells[6].innerHTML && currentX==cells[7].innerHTML && currentX==cells[8].innerHTML){
     WinMessageX();
   } else {
-    xDontWin = true;
+    xDontWin = true; // if x doesnt win now we have 1 of 2 condition to draw
   }
 }
 const oWins = () => {
@@ -67,7 +67,7 @@ const oWins = () => {
   } else if (currentO==cells[6].innerHTML && currentO==cells[7].innerHTML && currentO==cells[8].innerHTML){
     WinMessageO();
   } else {
-    oDontWin = true;
+    oDontWin = true; // if o doesnt win now we have 1 of 2 condition to draw
   }
 }
 
