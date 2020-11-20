@@ -5,22 +5,14 @@ let hiddenLog = document.getElementById('loghidden');
 let hiddenSign = document.getElementById('signhidden');
 
 // ---------- Every click
-const hideLog = (event) => {
-  hiddenLog.removeAttribute("hidden")
-  if (hiddenSign.attributes[0] == 'hidden'){
-  } else {
-    hiddenSign.setAttribute("hidden")
-  }
+const logInClick = (event) => {
+  hiddenLog.removeAttribute("hidden", {once:true});
 }
 
-const hideSign = (event) => {
-  hiddenSign.removeAttribute("hidden")
-  if (hiddenLog.attributes[0] == 'hidden'){
-  } else {
-    hiddenLog.setAttribute("hidden")
-  }
+const SignUpClick = (event) => {
+  hiddenSign.removeAttribute("hidden", {once:true});
 }
 
 // ---------- Listeners
-logIn.addEventListener('click', hideLog)
-signUp.addEventListener('click', hideSign)
+logIn.addEventListener('click', logInClick)
+signUp.addEventListener('click', SignUpClick)
