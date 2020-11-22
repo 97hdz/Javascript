@@ -3,24 +3,21 @@ const logIn = document.getElementById('log-in');
 const signUp = document.getElementById('sign-up');
 let hiddenLog = document.getElementById('loghidden');
 let hiddenSign = document.getElementById('signhidden');
-let currentButton
-let currentVisible
 
 // ---------- Every click
 let hideLog = (event) => {
-  currentVisible = hiddenLog;
-  currentHidden = hiddenSign;
+  hiddenLog.classList.remove("hidden")
+  if (hiddenSign.classList != 'hidden'){
+    hiddenSign.classList.add("hidden")
+  }
 }
 
 let hideSign = (event) => {
-  currentVisible = hiddenSign;
-  currentHidden = hiddenLog;
+  hiddenSign.classList.remove("hidden")
+  if (hiddenLog.classList != 'hidden'){
+    hiddenLog.classList.add("hidden")
+  }
 }
-
-// ----------- Function
-
-currentVisible.removeAttribute("hidden")
-currentHidden.setAttribute("hidden")
 
 // ---------- Listeners
 logIn.addEventListener('click', hideLog)
