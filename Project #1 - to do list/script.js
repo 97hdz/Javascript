@@ -4,6 +4,7 @@ const signUp = document.getElementById('sign-up');
 let hiddenLog = document.getElementById('loghidden');
 let hiddenSign = document.getElementById('signhidden');
 
+
 // ---------- Every click
 let hideLog = (event) => {
   hiddenLog.classList.remove("hidden")
