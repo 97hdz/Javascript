@@ -4,15 +4,23 @@ const signUp = document.getElementById('sign-up');
 let hiddenLog = document.getElementById('loghidden');
 let hiddenSign = document.getElementById('signhidden');
 let currentButton
+let currentVisible
 
 // ---------- Every click
-const hideLog = (event) => {
-  hiddenSign.classList.remove("hidden")
+let hideLog = (event) => {
+  currentVisible = hiddenLog;
+  currentHidden = hiddenSign;
 }
 
-const hideSign = (event) => {
-  hiddenSign.classList.remove("hidden")
+let hideSign = (event) => {
+  currentVisible = hiddenSign;
+  currentHidden = hiddenLog;
 }
+
+// ----------- Function
+
+currentVisible.removeAttribute("hidden")
+currentHidden.setAttribute("hidden")
 
 // ---------- Listeners
 logIn.addEventListener('click', hideLog)
