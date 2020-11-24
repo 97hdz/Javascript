@@ -3,9 +3,10 @@ const logIn = document.getElementById('log-in');
 const signUp = document.getElementById('sign-up');
 let hiddenLog = document.getElementById('loghidden');
 let hiddenSign = document.getElementById('signhidden');
-const submit = document.getElementById('reset');
+const submit = document.getElementById('submitLog');
 const dashboard = document.getElementById('dashboard');
-
+const storage = document.getElementById('submitSignUp');
+const email = document.getElementById('input-email');
 
 // ---------- Every click
 let hideLog = (event) => {
@@ -29,7 +30,12 @@ const showDashboard = (event) => {
 
 }
 
+const storageData = (event) => {
+  localStorage.setItem('textinput', email.textContent)
+}
+
 // ---------- Listeners
 logIn.addEventListener('click', hideLog)
 signUp.addEventListener('click', hideSign)
 submit.addEventListener('click', showDashboard)
+storage.addEventListener('click', storageData)
