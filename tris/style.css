@@ -1,0 +1,64 @@
+
+html{
+  background-color: black
+}
+/* -------- Creating the shape of the squares -------- */
+.shape {
+   background-color: black;
+   width: 200px;
+   height: 200px;
+}
+
+/* -------- Creating the board style -------- */
+.Board > div{
+  display: flex;
+  justify-content: center;
+  margin-left: 300px;;
+  margin-right: 300px;
+}
+
+.Board {
+  margin-top: 200px;
+}
+
+#one, #four, #seven{
+  border-left: none;
+}
+
+#one, #two, #three{
+  border-top: none;
+}
+
+#three, #six, #nine{
+  border-right: none;
+}
+
+#seven, #eight, #nine{
+  border-bottom: none;
+}
+
+/*--- Images Styles ----*/
+
+#O{
+  font-size : 70px ;
+  color : blue;
+}
+
+#X{
+  font-size : 70px ;
+  color : red;
+}
+
+/*  Position of innerText */
+.primera div , .segunda div , .tercera div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------ Borders ---------- */
+.Board div > div{
+  border: 5px solid;
+  border-color: white;
+  cursor: pointer;
+}
