@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="main.js" defer></script>
+    <meta charset="utf-8">
+    <title>To-Do-List</title>
+  </head>
+  <body>
+
+    <!-- 1 - La primera parte, solo de los dos botones ----->
+    <div class="index" id="index">
+    <button type="button" id="signupButton"> Sign Up </button>
+    <button type="button" id="loginButton"> Log In </button>
+    </div>
+
+    <!--- 2 - Registracion en caso de signupButton ----->
+    <div class="signupSection hidden" id="signupSection">
+    <form class="signupForm" id="signupForm" action="index.html" method="post">
+    <h3 id=""> Name : <input id="signupName" placeholder="Your name"></h3>
+    <h3 id=""> Lastname : <input id="signupLastname" placeholder="Your lastname"></h3>
+    <h3 id=""> Email : <input id="signupEmail" placeholder="Your email"></h3>
+    <h3 id=""> Password : <input id="signupPassword" type="password" placeholder="Your Password"></h3>
+    <h3 id=""> I agree with the document  <input id="signupName" required type="checkbox" ></h3>
+    </form>
+    </div>
+
+    <!--- 3 - en caso de loginButton ----->
+    <div class="loginsection hidden">
+    <form class="loginForm" id="loginForm" action="index.html" method="post">
+    <h3 id=""> Email : <input id="loginEmail" placeholder="Your email"></h3>
+    <h3 id=""> Password : <input id="loginPassword" type="password" placeholder="Your Password"></h3>
+    </form>
+    </div>
+
+    <!--- Creacion del Dashboard ----->
+    <div class="dashboard hidden">
+    <button type="button" name="button" id="createNew">Create New List</button>
+    <ol id="listDashboard">
+    <li></li>
+    </ol>
+    </div>
+
+    <!--- Creacion de la pagina Lists ----->
+    <div class="lists hidden" id="lists">
+    <button type="button" name="button" id="editList">Edit List</button>
+    <h3 id=""> List Name : <input id="listname" placeholder="Aca va el nombre viejo de la lista"></h3>
+    <h3 id=""> Done <input id="checkboxList" type="checkbox"></h3>
+    <button onclick=save();>Save</button>
+    </div>
+
+    <!--- Creacion de la seccion de usuarios ----->
+    <div class="users hidden" id="users" >
+    <button type="button" id="logOut">Log Out</button>
+    <button type="button" id="accountSettings">Account Settings</button>
+    </div>
+
+  </body>
+</html>
