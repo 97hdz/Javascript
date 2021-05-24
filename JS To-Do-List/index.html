@@ -22,11 +22,13 @@
     <h3 id=""> Email : <input id="signupEmail" placeholder="Your email"></h3>
     <h3 id=""> Password : <input id="signupPassword" type="password" placeholder="Your Password"></h3>
     <h3 id=""> I agree with the document  <input id="signupName" required type="checkbox" ></h3>
+    <button type="button" id="submit" onclick=saveInput();>Submit</button>
+    <button type="button" id="goBack" onclick=goBack();>Go back</button>
     </form>
     </div>
 
     <!--- 3 - en caso de loginButton ----->
-    <div class="loginsection hidden">
+    <div class="loginSection hidden" id="loginSection">
     <form class="loginForm" id="loginForm" action="index.html" method="post">
     <h3 id=""> Email : <input id="loginEmail" placeholder="Your email"></h3>
     <h3 id=""> Password : <input id="loginPassword" type="password" placeholder="Your Password"></h3>
