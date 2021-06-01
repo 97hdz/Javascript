@@ -16,14 +16,14 @@
 
     <!--- 2 - Registracion en caso de signupButton ----->
     <div class="signupSection hidden" id="signupSection">
-    <form class="signupForm" id="signupForm" action="index.html" method="post">
-    <h3 id=""> Name : <input id="signupName" placeholder="Your name"></h3>
-    <h3 id=""> Lastname : <input id="signupLastname" placeholder="Your lastname"></h3>
-    <h3 id=""> Email : <input id="signupEmail" placeholder="Your email"></h3>
-    <h3 id=""> Password : <input id="signupPassword" type="password" placeholder="Your Password"></h3>
-    <h3 id=""> I agree with the document  <input id="signupName" required type="checkbox" ></h3>
+    <form class="signupForm" id="signupForm" action="index.html" method="post" onsubmit="saveInput(event);">
+    <h3> Name : <input id="signupName" placeholder="Your name"></h3>
+    <h3> Lastname : <input id="signupLastname" placeholder="Your lastname"></h3>
+    <h3> Email : <input id="signupEmail" placeholder="Your email"></h3>
+    <h3> Password : <input id="signupPassword" type="password" placeholder="Your Password"></h3>
+    <h3> I agree to the Terms of Use  <input id="signupName" required type="checkbox" ></h3>
     <button type="button" id="submit" onclick=saveInput();>Submit</button>
-    <button type="button" id="goBack" onclick=goBack();>Go back</button>
+    <button><a href="index.html" style='text-decoration:none' >Go back</a></button>
     </form>
     </div>
 
@@ -32,6 +32,7 @@
     <form class="loginForm" id="loginForm" action="index.html" method="post">
     <h3 id=""> Email : <input id="loginEmail" placeholder="Your email"></h3>
     <h3 id=""> Password : <input id="loginPassword" type="password" placeholder="Your Password"></h3>
+    <button><a href="index.html" style='text-decoration:none' >Go back</a></button>
     </form>
     </div>
 
