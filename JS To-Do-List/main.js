@@ -21,9 +21,9 @@ let saveInput = (event) => {
   window.location.reload();
 
   let name = document.getElementById('signupName').value;
-  let lastname = 'Lastname : ' + document.getElementById('signupLastname').value;
-  let email = 'Email : ' + document.getElementById('signupEmail').value;
-  let pass = 'password : ' + document.getElementById('signupPassword').value;
+  let lastname = document.getElementById('signupLastname').value;
+  let email = document.getElementById('signupEmail').value;
+  let pass = document.getElementById('signupPassword').value;
 
   //se non c'è niente da memorizzare all'inizio memorizza un array vuoto
   if(localStorage.getItem('emailData')==null){
@@ -44,6 +44,18 @@ let saveInput = (event) => {
   localStorage.setItem('passData', JSON.stringify(old_pass));
 }
 
+let control = (event) => {
+  let name = document.getElementById('signupName').value;
+  let lastname = document.getElementById('signupLastname').value;
+
+  let old_mail = localStorage.getItem('emailData');
+  let mails = old_mail.split(',');
+
+  console.log(mails);
+
+
+
+}
 
 //Listeners
 loginButton.addEventListener("click", loginForm);
