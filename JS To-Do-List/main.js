@@ -3,6 +3,7 @@ let signupButton = document.getElementById("signupButton");
 let loginButton = document.getElementById("loginButton");
 let signupSection = document.getElementById("signupSection");
 let loginSection = document.getElementById("loginSection");
+let dashboard = document.getElementById('dashboard');
 const buttons = document.getElementById('index');
 
 //Functions to show the form depending on wich button you click
@@ -22,8 +23,8 @@ signupButton.addEventListener("click", signupForm);
 
 //buttons to save all the data
 let saveInput = (event) => {
-  //window.location.reload();
 
+  //window.location.reload();
   var name = document.getElementById('signupName').value;
   var lastname = document.getElementById('signupLastname').value;
   var email = document.getElementById('signupEmail').value;
@@ -49,10 +50,11 @@ let saveInput = (event) => {
   localStorage.setItem('passData', JSON.stringify(old_pass));
 }
 
+//Function to control the email/pass input on login with all the data on the localStorage
 let control = (event) => {
+  // The input
   let email = document.getElementById('loginEmail').value;
   let pass = document.getElementById('loginPassword').value;
-
   //JSON.parse is used to make the data redable and can be visualized as an Array,
   //so there's no need to use the split method to transform String -> Array
   let allEmails = JSON.parse(localStorage.getItem('emailData'));
@@ -62,14 +64,25 @@ let control = (event) => {
   console.log(allEmails);
 
   for (var i = 0; i < allEmails.length; i++) {
-
     if (email == allEmails[i] && pass == allPasswords[i]) {
       console.log('la mail : '+ email +' e la password : '+ pass +' sono gli stessi');
       var success=true;
+      seeDashboard();
     }
   }
-
   if (!success) {
     console.log('errore');
   }
+}
+
+// ------------------ THE DASHBOARD -------------
+let seeDashboard = (event) =>{
+  // all the sections to hide
+  dashboard.classList.remove('hidden');
+  buttons.classList.add("hidden");
+  loginSection.classList.add('hidden');
+}
+
+let newList = (e) => {
+  console.log('new list');
 }
