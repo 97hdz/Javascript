@@ -63,11 +63,13 @@ let control = (event) => {
   console.log(email);
   console.log(allEmails);
 
+  //the FOR to verify the input with the localStorage data
   for (var i = 0; i < allEmails.length; i++) {
     if (email == allEmails[i] && pass == allPasswords[i]) {
       console.log('la mail : '+ email +' e la password : '+ pass +' sono gli stessi');
       var success=true;
       seeDashboard();
+      
     }
   }
   if (!success) {
@@ -83,6 +85,8 @@ let seeDashboard = (event) =>{
   loginSection.classList.add('hidden');
 }
 
+
 let newList = (e) => {
   console.log('new list');
+
 }
