@@ -16,21 +16,26 @@ let loginForm = (event) => {
   buttons.classList.add("hidden");
 }
 
+//Listeners
+loginButton.addEventListener("click", loginForm);
+signupButton.addEventListener("click", signupForm);
+
 //buttons to save all the data
 let saveInput = (event) => {
-  window.location.reload();
+  //window.location.reload();
 
-  let name = document.getElementById('signupName').value;
-  let lastname = document.getElementById('signupLastname').value;
-  let email = document.getElementById('signupEmail').value;
-  let pass = document.getElementById('signupPassword').value;
+  var name = document.getElementById('signupName').value;
+  var lastname = document.getElementById('signupLastname').value;
+  var email = document.getElementById('signupEmail').value;
+  var pass = document.getElementById('signupPassword').value;
 
   //se non c'è niente da memorizzare all'inizio memorizza un array vuoto
+
   if(localStorage.getItem('emailData')==null){
-    localStorage.setItem('emailData','[]');
+    localStorage.setItem('emailData', '[]');
   }
   if(localStorage.getItem('passData')==null){
-    localStorage.setItem('passData','[]');
+    localStorage.setItem('passData', '[]');
   }
 
   //dati vecchi e aggiungi a quelli nuovi
@@ -45,18 +50,26 @@ let saveInput = (event) => {
 }
 
 let control = (event) => {
-  let name = document.getElementById('signupName').value;
-  let lastname = document.getElementById('signupLastname').value;
+  let email = document.getElementById('loginEmail').value;
+  let pass = document.getElementById('loginPassword').value;
 
-  let old_mail = localStorage.getItem('emailData');
-  let mails = old_mail.split(',');
+  //JSON.parse is used to make the data redable and can be visualized as an Array,
+  //so there's no need to use the split method to transform String -> Array
+  let allEmails = JSON.parse(localStorage.getItem('emailData'));
+  let allPasswords = JSON.parse(localStorage.getItem('passData'));
 
-  console.log(mails);
+  console.log(email);
+  console.log(allEmails);
 
+  for (var i = 0; i < allEmails.length; i++) {
 
+    if (email == allEmails[i] && pass == allPasswords[i]) {
+      console.log('la mail : '+ email +' e la password : '+ pass +' sono gli stessi');
+      var success=true;
+    }
+  }
 
+  if (!success) {
+    console.log('errore');
+  }
 }
-
-//Listeners
-loginButton.addEventListener("click", loginForm);
-signupButton.addEventListener("click", signupForm);
