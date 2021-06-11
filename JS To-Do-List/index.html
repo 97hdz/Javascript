@@ -17,23 +17,23 @@
     <!--- 2 - Registracion en caso de signupButton ----->
     <div class="signupSection hidden" id="signupSection">
     <form class="signupForm" id="signupForm" action="" method="post">
-    <input id="signupName" placeholder="Your name" required><br>
-    <input id="signupLastname" placeholder="Your lastname" required><br>
-    <input id="signupEmail" placeholder="Your email" required><br>
-    <input id="signupPassword" type="password" placeholder="Your Password" required><br>
-    <h3> I agree to the Terms of Use  <input id="signupName" type="checkbox" required></h3>
-    <button type="button" id="submit" onclick=saveInput();>Submit</button>
-    <button><a href="index.html" style='text-decoration:none'>Go back</a></button>
+      <input id="signupName" placeholder="Your name" required><br>
+      <input id="signupLastname" placeholder="Your lastname" required><br>
+      <input id="signupEmail" placeholder="Your email" required><br>
+      <input id="signupPassword" type="password" placeholder="Your Password" required><br>
+      <h3> I agree to the Terms of Use  <input id="signupName" type="checkbox" required></h3>
+      <button type="button" id="submit" onclick=saveInput();>Submit</button>
+      <button><a href="index.html" style='text-decoration:none'>Go back</a></button>
     </form>
     </div>
 
     <!--- 3 - en caso de loginButton ----->
     <div class="loginSection hidden" id="loginSection">
     <form class="loginForm" id="loginForm" action="index.html" method="post">
-    <input id="loginEmail" placeholder="Your email"><br>
-    <input id="loginPassword" type="password" placeholder="Your Password"><br>
-    <button type="button" id="submit" onclick=control();>Submit</button>
-    <button><a href="index.html" style='text-decoration:none'>Go back</a></button>
+      <input id="loginEmail" placeholder="Your email"><br>
+      <input id="loginPassword" type="password" placeholder="Your Password"><br>
+      <button type="button" id="submit" onclick=control();>Submit</button>
+      <button><a href="index.html" style='text-decoration:none'>Go back</a></button>
     </form>
     </div>
 
@@ -47,10 +47,14 @@
 
     <!--- Creacion de la pagina Lists ----->
     <div class="lists hidden" id="lists">
-    <button type="button" id="editList">Edit List</button>
-    <input id="listname" placeholder="Aca va el nombre viejo de la lista">
-    <input id="checkboxList" type="checkbox">
-    <button onclick=save();>Save</button>
+    <form class="addList" id="addList" method="post">
+      <input id="listname" placeholder="List Name">
+      <input class="item" placeholder="item">
+      <button onclick=moreItems();>More Items</button>
+      <button onclick=lessItems();>Less Items</button>
+      <button type="button" id="editList">Edit List</button>
+      <button onclick=listAndItems();>Save</button>
+    </form>
     </div>
 
     <!--- Creacion de la seccion de usuarios ----->

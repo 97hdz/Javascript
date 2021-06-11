@@ -4,6 +4,7 @@ let loginButton = document.getElementById("loginButton");
 let signupSection = document.getElementById("signupSection");
 let loginSection = document.getElementById("loginSection");
 let dashboard = document.getElementById('dashboard');
+let lists = document.getElementById('lists');
 const buttons = document.getElementById('index');
 
 //Functions to show the form depending on wich button you click
@@ -31,7 +32,6 @@ let saveInput = (event) => {
   var pass = document.getElementById('signupPassword').value;
 
   //se non c'è niente da memorizzare all'inizio memorizza un array vuoto
-
   if(localStorage.getItem('emailData')==null){
     localStorage.setItem('emailData', '[]');
   }
@@ -53,8 +53,8 @@ let saveInput = (event) => {
 //Function to control the email/pass input on login with all the data on the localStorage
 let control = (event) => {
   // The input
-  let email = document.getElementById('loginEmail').value;
-  let pass = document.getElementById('loginPassword').value;
+  const email = document.getElementById('loginEmail').value;
+  const pass = document.getElementById('loginPassword').value;
   //JSON.parse is used to make the data redable and can be visualized as an Array,
   //so there's no need to use the split method to transform String -> Array
   let allEmails = JSON.parse(localStorage.getItem('emailData'));
@@ -69,12 +69,20 @@ let control = (event) => {
       console.log('la mail : '+ email +' e la password : '+ pass +' sono gli stessi');
       var success=true;
       seeDashboard();
-      
+      userData();
     }
   }
   if (!success) {
     console.log('errore');
   }
+}
+
+//creation of the unique key of every user 
+let userData = (e) => {
+  let email = document.getElementById('loginEmail').value;
+  let pass = document.getElementById('loginPassword').value;
+  var key = email+pass;
+  return key;
 }
 
 // ------------------ THE DASHBOARD -------------
@@ -85,8 +93,40 @@ let seeDashboard = (event) =>{
   loginSection.classList.add('hidden');
 }
 
-
 let newList = (e) => {
+  dashboard.classList.add('hidden');
+  lists.classList.remove('hidden');
   console.log('new list');
+}
+
+//creation of list to the localStorage
+let listAndItems = (e) => {
+
+    let listnameInput = document.getElementById('listname').value;
+    let itemInput = document.getElementsByClassName('item').value;
+
+    //declaration of the input list
+    if (localStorage.getItem('listname')==null){
+       localStorage.setItem('listname', '[]');
+    }
+    if(localStorage.getItem('item')==null){
+      localStorage.setItem('item', '[]');
+    }
+
+    let listname = JSON.parse(localStorage.getItem('listname'));
+    listname.push(listnameInput);
+    let items = JSON.parse(localStorage.getItem('item'));
+    items.push(itemInput);
+
+    //memorizza i dati vecchi + i nuovi dati
+    localStorage.setItem('listname', JSON.stringify(listname));
+    localStorage.setItem('item', JSON.stringify(items));
+
+}
+
+let moreItems = (event) => {
+  const newItem = document.createElement('input');
+  const form = document.getElementById('addList');
+  form.appendChild(newItem);
 
 }
