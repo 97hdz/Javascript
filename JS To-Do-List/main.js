@@ -77,7 +77,7 @@ let control = (event) => {
   }
 }
 
-//creation of the unique key of every user 
+//creation of the unique key of every user
 let userData = (e) => {
   let email = document.getElementById('loginEmail').value;
   let pass = document.getElementById('loginPassword').value;
@@ -102,25 +102,29 @@ let newList = (e) => {
 //creation of list to the localStorage
 let listAndItems = (e) => {
 
+    let parentList = document.getElementById('addList');
     let listnameInput = document.getElementById('listname').value;
-    let itemInput = document.getElementsByClassName('item').value;
+    let itemInput = parentList.getElementsByClassName('inputItem')[0].value;
 
     //declaration of the input list
-    if (localStorage.getItem('listname')==null){
-       localStorage.setItem('listname', '[]');
+    if(localStorage.getItem(userData())==null){
+      localStorage.setItem(userData(), '[]');
     }
+
     if(localStorage.getItem('item')==null){
       localStorage.setItem('item', '[]');
     }
 
-    let listname = JSON.parse(localStorage.getItem('listname'));
-    listname.push(listnameInput);
-    let items = JSON.parse(localStorage.getItem('item'));
-    items.push(itemInput);
+    let user_list = JSON.parse(localStorage.getItem(userData()));
+    user_list.push(listnameInput);
+    let list_items = JSON.parse(localStorage.getItem('item'));
+    list_items.push(itemInput);
 
     //memorizza i dati vecchi + i nuovi dati
-    localStorage.setItem('listname', JSON.stringify(listname));
-    localStorage.setItem('item', JSON.stringify(items));
+    localStorage.setItem(userData(), JSON.stringify(user_list));
+    localStorage.setItem('item', JSON.stringify(list_items));
+    //local storage to save lists with the key of the user
+    localStorage.setItem(userData()+" : "+listnameInput, itemInput);
 
 }
 
