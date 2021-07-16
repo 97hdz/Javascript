@@ -111,19 +111,13 @@ let listAndItems = (e) => {
       localStorage.setItem(userData(), '[]');
     }
 
-    if(localStorage.getItem('item')==null){
-      localStorage.setItem('item', '[]');
-    }
+  
 
     let user_list = JSON.parse(localStorage.getItem(userData()));
     user_list.push(listnameInput);
-    let list_items = JSON.parse(localStorage.getItem('item'));
-    list_items.push(itemInput);
 
     //memorizza i dati vecchi + i nuovi dati
     localStorage.setItem(userData(), JSON.stringify(user_list));
-    localStorage.setItem('item', JSON.stringify(list_items));
-    //local storage to save lists with the key of the user
     localStorage.setItem(userData()+" : "+listnameInput, itemInput);
 
 }
