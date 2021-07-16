@@ -59,10 +59,8 @@ let control = (event) => {
   //so there's no need to use the split method to transform String -> Array
   let allEmails = JSON.parse(localStorage.getItem('emailData'));
   let allPasswords = JSON.parse(localStorage.getItem('passData'));
-
   console.log(email);
   console.log(allEmails);
-
   //the FOR to verify the input with the localStorage data
   for (var i = 0; i < allEmails.length; i++) {
     if (email == allEmails[i] && pass == allPasswords[i]) {
@@ -101,30 +99,28 @@ let newList = (e) => {
 
 //creation of list to the localStorage
 let listAndItems = (e) => {
-
     let parentList = document.getElementById('addList');
     let listnameInput = document.getElementById('listname').value;
-    let itemInput = parentList.getElementsByClassName('inputItem')[0].value;
-
+    let newitems = []; //the container of all the items from the respective list
+    let sizeItems = parentList.getElementsByClassName('inputItem').length; //how many inputs are
+    // for to push every item inside of the list
+    for (var i = 0; i < sizeItems; i++) {
+      var itemInput = parentList.getElementsByClassName('inputItem')[i].value;
+      newitems.push(itemInput);
+    }
     //declaration of the input list
     if(localStorage.getItem(userData())==null){
       localStorage.setItem(userData(), '[]');
     }
-
-  
-
     let user_list = JSON.parse(localStorage.getItem(userData()));
     user_list.push(listnameInput);
-
     //memorizza i dati vecchi + i nuovi dati
     localStorage.setItem(userData(), JSON.stringify(user_list));
-    localStorage.setItem(userData()+" : "+listnameInput, itemInput);
-
+    localStorage.setItem(userData()+" : "+listnameInput, newitems);
 }
 
 let moreItems = (event) => {
   const newItem = document.createElement('input');
   const form = document.getElementById('addList');
   form.appendChild(newItem);
-
 }
