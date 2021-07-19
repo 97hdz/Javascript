@@ -103,12 +103,16 @@ const seeDashboard = (event) =>{
     dashboard.appendChild(div)
     const h3 = document.createElement('h3');
     const title = document.createTextNode(listUserName[i]);
+    let nope = localStorage.getItem(userData()+" : List -> "+listUserName[i]); // para poder tomar los respectivos items de cada lista
+    console.log(nope);
     h3.appendChild(title);
     div.appendChild(h3);
     const ul = document.createElement('ul');
+    div.appendChild(ul)
     const li = document.createElement('li');
-    // const insideText = document.createTextNode();
     ul.appendChild(li);
+    const insideText = document.createTextNode(nope);
+    li.appendChild(insideText);
   }
 }
 
@@ -126,22 +130,22 @@ let moreItems = (e) => {
 }
 //creation of list to the localStorage
 const listAndItems = (e) => {
-    let parentList = document.getElementById('addList');
-    let listnameInput = document.getElementById('listname').value;
-    let newitems = []; //the container of all the items from the respective list
-    let sizeItems = parentList.getElementsByClassName('inputItem').length; //how many inputs are
-    // for to push every item inside of the list
-    for (var i = 0; i < sizeItems; i++) {
-      var itemInput = parentList.getElementsByClassName('inputItem')[i].value;
-      newitems.push(itemInput);
-    }
-    //declaration of the input list
-    if(localStorage.getItem(userData())==null){
-      localStorage.setItem(userData(), '[]');
-    }
-    let user_list = JSON.parse(localStorage.getItem(userData()));
-    user_list.push(listnameInput);
-    //memorizza i dati vecchi + i nuovi dati
-    localStorage.setItem(userData() ,JSON.stringify(user_list));
-    localStorage.setItem(userData()+" : List -> "+listnameInput, newitems);
+  let parentList = document.getElementById('addList');
+  let listnameInput = document.getElementById('listname').value;
+  let newitems = []; //the container of all the items from the respective list
+  let sizeItems = parentList.getElementsByClassName('inputItem').length; //how many inputs are
+  // for to push every item inside of the list
+  for (var i = 0; i < sizeItems; i++) {
+    var itemInput = parentList.getElementsByClassName('inputItem')[i].value;
+    newitems.push(itemInput);
+  }
+  //declaration of the input list
+  if(localStorage.getItem(userData())==null){
+    localStorage.setItem(userData(), '[]');
+  }
+  let user_list = JSON.parse(localStorage.getItem(userData()));
+  user_list.push(listnameInput);
+  //memorizza i dati vecchi + i nuovi dati
+  localStorage.setItem(userData() ,JSON.stringify(user_list));
+  localStorage.setItem(userData()+" : "+listnameInput, newitems);
 }
