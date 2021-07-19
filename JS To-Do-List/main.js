@@ -84,24 +84,32 @@ let userData = (e) => {
 }
 
 // ------------------ THE DASHBOARD -------------
-let seeDashboard = (event) =>{
+const seeDashboard = (event) =>{
   dashboard.classList.remove('hidden');
   buttons.classList.add("hidden");
   loginSection.classList.add('hidden');
-  let user_list = JSON.parse(localStorage.getItem(userData()));
-  let numero = user_list.length;
+  var listDiv = document.getElementById('list_div');
+  //redeclaring listUserName to be able to use it in this function
+  let listUserName = JSON.parse(localStorage.getItem(userData()));
+  // let a = "Colores";
+  // let itemsLista = JSON.parse(localStorage.getItem(userData()+" : List -> "+a));
+  let numero = listUserName.length;
   console.log(numero);
+  // console.log(itemLista);
 
-  // const kkk = document.getElementsByClassName('List');
-  //
-  // const list_name = document.createElement('h3');
-  // const ul = document.createElement('ul');
-  // const li = document.createElement('li');
-  // ul.appendChild(li);
-  // kkk.appendChild(list_name);
-  // listDash.appendChild(ul);
-  //
-
+  for (var i = 0; i < numero; i++) {
+    const div = document.createElement('div');
+    div.classList.add('list_div');
+    dashboard.appendChild(div)
+    const h3 = document.createElement('h3');
+    const title = document.createTextNode(listUserName[i]);
+    h3.appendChild(title);
+    div.appendChild(h3);
+    const ul = document.createElement('ul');
+    const li = document.createElement('li');
+    // const insideText = document.createTextNode();
+    ul.appendChild(li);
+  }
 }
 
 //Buton to create a new list
@@ -121,13 +129,11 @@ const listAndItems = (e) => {
     let parentList = document.getElementById('addList');
     let listnameInput = document.getElementById('listname').value;
     let newitems = []; //the container of all the items from the respective list
-
     let sizeItems = parentList.getElementsByClassName('inputItem').length; //how many inputs are
     // for to push every item inside of the list
     for (var i = 0; i < sizeItems; i++) {
       var itemInput = parentList.getElementsByClassName('inputItem')[i].value;
       newitems.push(itemInput);
-
     }
     //declaration of the input list
     if(localStorage.getItem(userData())==null){
