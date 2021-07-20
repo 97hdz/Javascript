@@ -1,11 +1,11 @@
 body {
-  background-color: coral;
+  background-color: #FAEBD7;
 }
 
 .hidden { display: none;}
 
 .index, .signupSection, .loginSection, .dashboard, .lists, .users{
-  background-color: orange;
+  background-color: #6495ED;
   border-color: black;
   border-radius: 30px;
   text-align: center;
@@ -14,4 +14,9 @@ body {
   padding: 20px;
   width: 60%;
   align-items: center;
+}
+
+.hr3 {
+  border: 0;
+  border-top: 1px dashed #CCC;
 }

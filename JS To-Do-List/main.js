@@ -75,7 +75,7 @@ let userData = (e) => {
 }
 
 // ------------------ THE DASHBOARD -------------
-const seeDashboard = (event) =>{
+var seeDashboard = (e) =>{
   dashboard.classList.remove('hidden');
   buttons.classList.add("hidden");
   loginSection.classList.add('hidden');
@@ -86,19 +86,31 @@ const seeDashboard = (event) =>{
     let numero = listUserName.length;
     for (var i = 0; i < numero; i++) {
       var div = document.createElement('div');
-      div.classList.add('list_div');
       dashboard.appendChild(div)
       var h3 = document.createElement('h3');
-      h3.classList.add('titulo');
+      kinda ='numero'+i;
+      h3.setAttribute('id',i);
       var title = document.createTextNode(listUserName[i]);
+      // pass = listUserName[i];
       h3.appendChild(title);
       div.appendChild(h3);
+      console.log(title);
+      let separator = document.createElement('hr');
+      separator.classList.add('hr3');
+      div.appendChild(separator);
+      h3.setAttribute("onclick", "showList(kinda);");
     }
-
+  }
+  for (var i = 0; i<3; i++) {
+    let tagH3 = document.getElementById(i)
+    tagH3.addEventListener('click', console.log(tagH3.textContent));
+    console.log(i);
   }
 }
 
-
+let showList = (e) => {
+  console.log(e);
+}
 
 //Buton to create a new list
 let newList = (e) => {
