@@ -79,38 +79,37 @@ var seeDashboard = (e) =>{
   dashboard.classList.remove('hidden');
   buttons.classList.add("hidden");
   loginSection.classList.add('hidden');
-  var listDiv = document.getElementById('list_div');
+
   //redeclaring listUserName to be able to use it in this function
+  dashboardControl();
+}
+
+let dashboardControl = () =>{
   let listUserName = JSON.parse(localStorage.getItem(userData()));
+  var listDiv = document.getElementById('list_div');
   if (listUserName) {
     let numero = listUserName.length;
     for (var i = 0; i < numero; i++) {
-      var div = document.createElement('div');
-      dashboard.appendChild(div)
-      var h3 = document.createElement('h3');
-      kinda ='numero'+i;
-      h3.setAttribute('id',i);
-      var title = document.createTextNode(listUserName[i]);
+      var listTitle = document.createElement('h3');
+      listDiv.appendChild(listTitle);
+      var titleInside = document.createTextNode(listUserName[i]);
+      // h3.setAttribute('onclick',ifiwalk());
+      // h3.setAttribute('id',i)
       // pass = listUserName[i];
-      h3.appendChild(title);
-      div.appendChild(h3);
-      console.log(title);
+      listTitle.appendChild(titleInside);
+      console.log(titleInside);
+      //Separator
       let separator = document.createElement('hr');
       separator.classList.add('hr3');
-      div.appendChild(separator);
-      h3.setAttribute("onclick", "showList(kinda);");
+      listTitle.appendChild(separator);
     }
-  }
-  for (var i = 0; i<3; i++) {
-    let tagH3 = document.getElementById(i)
-    tagH3.addEventListener('click', console.log(tagH3.textContent));
-    console.log(i);
   }
 }
 
-let showList = (e) => {
-  console.log(e);
-}
+
+// let ifiwalk = (e) => {
+//   console.log('asdsadsadasdd');
+// }
 
 //Buton to create a new list
 let newList = (e) => {
