@@ -6,25 +6,20 @@ let loginSection = document.getElementById("loginSection");
 let dashboard = document.getElementById('dashboard');
 let lists = document.getElementById('lists');
 const buttons = document.getElementById('index');
-
 //Functions to show the form depending on wich button you click
 let signupForm = (event) => {
   signupSection.classList.remove("hidden")
   buttons.classList.add("hidden");
 }
-
 let loginForm = (event) => {
   loginSection.classList.remove("hidden")
   buttons.classList.add("hidden");
 }
-
 //Listeners
 loginButton.addEventListener("click", loginForm);
 signupButton.addEventListener("click", signupForm);
-
 //buttons to save all the data
 let saveInput = (event) => {
-
   //window.location.reload();
   var name = document.getElementById('signupName').value;
   var lastname = document.getElementById('signupLastname').value;
@@ -38,18 +33,15 @@ let saveInput = (event) => {
   if(localStorage.getItem('passData')==null){
     localStorage.setItem('passData', '[]');
   }
-
   //dati vecchi e aggiungi a quelli nuovi
   let old_mail = JSON.parse(localStorage.getItem('emailData'));
   old_mail.push(email);
   let old_pass = JSON.parse(localStorage.getItem('passData'));
   old_pass.push(pass);
-
   //memorizza i dati vecchi + i nuovi dati
   localStorage.setItem('emailData', JSON.stringify(old_mail));
   localStorage.setItem('passData', JSON.stringify(old_pass));
 }
-
 //Function to control the email/pass input on login with all the data on the localStorage
 let control = (event) => {
   // The input
@@ -74,7 +66,6 @@ let control = (event) => {
     console.log('errore');
   }
 }
-
 //creation of the unique key of every user
 let userData = (e) => {
   let email = document.getElementById('loginEmail').value;
@@ -91,30 +82,23 @@ const seeDashboard = (event) =>{
   var listDiv = document.getElementById('list_div');
   //redeclaring listUserName to be able to use it in this function
   let listUserName = JSON.parse(localStorage.getItem(userData()));
-  // let a = "Colores";
-  // let itemsLista = JSON.parse(localStorage.getItem(userData()+" : List -> "+a));
-  let numero = listUserName.length;
-  console.log(numero);
-  // console.log(itemLista);
+  if (listUserName) {
+    let numero = listUserName.length;
+    for (var i = 0; i < numero; i++) {
+      var div = document.createElement('div');
+      div.classList.add('list_div');
+      dashboard.appendChild(div)
+      var h3 = document.createElement('h3');
+      h3.classList.add('titulo');
+      var title = document.createTextNode(listUserName[i]);
+      h3.appendChild(title);
+      div.appendChild(h3);
+    }
 
-  for (var i = 0; i < numero; i++) {
-    const div = document.createElement('div');
-    div.classList.add('list_div');
-    dashboard.appendChild(div)
-    const h3 = document.createElement('h3');
-    const title = document.createTextNode(listUserName[i]);
-    let nope = localStorage.getItem(userData()+" : List -> "+listUserName[i]); // para poder tomar los respectivos items de cada lista
-    console.log(nope);
-    h3.appendChild(title);
-    div.appendChild(h3);
-    const ul = document.createElement('ul');
-    div.appendChild(ul)
-    const li = document.createElement('li');
-    ul.appendChild(li);
-    const insideText = document.createTextNode(nope);
-    li.appendChild(insideText);
   }
 }
+
+
 
 //Buton to create a new list
 let newList = (e) => {
