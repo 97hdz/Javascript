@@ -7,13 +7,19 @@ let dashboard = document.getElementById('dashboard');
 let lists = document.getElementById('lists');
 const buttons = document.getElementById('index');
 //Functions to show the form depending on wich button you click
-let signupForm = (event) => {
+let signupForm = () => {
   signupSection.classList.remove("hidden")
   buttons.classList.add("hidden");
 }
-let loginForm = (event) => {
+let loginForm = () => {
   loginSection.classList.remove("hidden")
   buttons.classList.add("hidden");
+}
+//Separator UI
+let separator = (e) => {
+  let separator = document.createElement('hr');
+  separator.classList.add('hr3');
+  e.appendChild(separator);
 }
 //Listeners
 loginButton.addEventListener("click", loginForm);
@@ -80,15 +86,12 @@ var seeDashboard = (e) =>{
   buttons.classList.add("hidden");
   loginSection.classList.add('hidden');
   let h2 = document.getElementsByTagName('h2')[0];
-  let separator = document.createElement('hr');
-  separator.classList.add('hr3');
-  h2.appendChild(separator);
-
+  separator(h2);
   //redeclaring listUserName to be able to use it in this function
-  dashboardControl();
+  dashboard_list_creation();
 }
 
-let dashboardControl = () =>{
+let dashboard_list_creation = () =>{
   let listUserName = JSON.parse(localStorage.getItem(userData()));
   var listDiv = document.getElementById('list_div');
   if (listUserName) {
@@ -97,30 +100,37 @@ let dashboardControl = () =>{
       var listTitle = document.createElement('h3');
       listDiv.appendChild(listTitle);
       var titleInside = document.createTextNode(listUserName[i]);
-      listTitle.setAttribute('onclick','ifiwalk('+i+');'); // function to get the number that will be equal to lits array postion
+      listTitle.setAttribute('onclick','show_click_list('+i+');'); // function to get the number that will be equal to lits array postion
       listTitle.setAttribute('id',i)
       listTitle.appendChild(titleInside);
       console.log(titleInside.nodeValue);
       //Separator
-      let separator = document.createElement('hr');
-      separator.classList.add('hr3');
-      listTitle.appendChild(separator);
+      separator(listTitle);
       //creating Listeners
     }
   }
 }
 
-let ifiwalk = (e) => {
+let show_click_list = (e) => {
   let listUserName = JSON.parse(localStorage.getItem(userData()));
   let numero = listUserName.length;
   for (var i = 0; i < numero ; i++) {
     if (e==i) {
-      console.log(listUserName[e]);
+      let listnameInput = document.getElementById('listname').value;
+      let showList = document.getElementById('showList');
+      let current_id = document.getElementById('showCurrentList');
+      dashboard.classList.add('hidden');
+      showList.classList.remove('hidden');
+      let currentList = document.createTextNode(listUserName[e]);
+      current_id.appendChild(currentList);
+      separator(current_id);
+      let nope = listUserName[e];
+      let currentListItems = localStorage.getItem(userData()+" : "+nope);
+      const split = currentListItems.split(',');
+      console.log(split[e]);
     }
   }
 }
-
-
 
 //Buton to create a new list
 let newList = (e) => {
@@ -135,7 +145,7 @@ let moreItems = (e) => {
  form.appendChild(newItem);
 }
 //creation of list to the localStorage
-const listAndItems = (e) => {
+const listAndItems = () => {
   let parentList = document.getElementById('addList');
   let listnameInput = document.getElementById('listname').value;
   let newitems = []; //the container of all the items from the respective list
