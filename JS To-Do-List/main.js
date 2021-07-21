@@ -79,6 +79,10 @@ var seeDashboard = (e) =>{
   dashboard.classList.remove('hidden');
   buttons.classList.add("hidden");
   loginSection.classList.add('hidden');
+  let h2 = document.getElementsByTagName('h2')[0];
+  let separator = document.createElement('hr');
+  separator.classList.add('hr3');
+  h2.appendChild(separator);
 
   //redeclaring listUserName to be able to use it in this function
   dashboardControl();
@@ -93,23 +97,30 @@ let dashboardControl = () =>{
       var listTitle = document.createElement('h3');
       listDiv.appendChild(listTitle);
       var titleInside = document.createTextNode(listUserName[i]);
-      // h3.setAttribute('onclick',ifiwalk());
-      // h3.setAttribute('id',i)
-      // pass = listUserName[i];
+      listTitle.setAttribute('onclick','ifiwalk('+i+');'); // function to get the number that will be equal to lits array postion
+      listTitle.setAttribute('id',i)
       listTitle.appendChild(titleInside);
-      console.log(titleInside);
+      console.log(titleInside.nodeValue);
       //Separator
       let separator = document.createElement('hr');
       separator.classList.add('hr3');
       listTitle.appendChild(separator);
+      //creating Listeners
+    }
+  }
+}
+
+let ifiwalk = (e) => {
+  let listUserName = JSON.parse(localStorage.getItem(userData()));
+  let numero = listUserName.length;
+  for (var i = 0; i < numero ; i++) {
+    if (e==i) {
+      console.log(listUserName[e]);
     }
   }
 }
 
 
-// let ifiwalk = (e) => {
-//   console.log('asdsadsadasdd');
-// }
 
 //Buton to create a new list
 let newList = (e) => {
