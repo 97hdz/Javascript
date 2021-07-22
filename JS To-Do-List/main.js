@@ -66,12 +66,26 @@ let control = (event) => {
       var success=true;
       seeDashboard();
       userData();
+      log_out(email);
     }
   }
   if (!success) {
     console.log('errore');
   }
 }
+
+let log_out = (e) =>{
+  let userDash = document.getElementById('userDashboard');
+  let userList = document.getElementById('userShowList');
+  let textInside = document.createTextNode(e);
+  let textInside2 = document.createTextNode(e);
+  userDash.appendChild(textInside);
+  userList.appendChild(textInside2);
+  console.log(' User : '+e);
+  separator(userList);
+  separator(userDash);
+}
+
 //creation of the unique key of every user
 let userData = (e) => {
   let email = document.getElementById('loginEmail').value;
@@ -114,7 +128,8 @@ let dashboard_list_creation = () =>{
 let show_click_list = (e) => {
   let listUserName = JSON.parse(localStorage.getItem(userData()));
   let numero = listUserName.length;
-  for (var i = 0; i < numero ; i++) {
+  let ol = document.getElementById('ol');
+  for (var i = 0; i < numero ; i++) { // verify what number was passed by the other Function
     if (e==i) {
       let listnameInput = document.getElementById('listname').value;
       let showList = document.getElementById('showList');
@@ -127,7 +142,13 @@ let show_click_list = (e) => {
       let nope = listUserName[e];
       let currentListItems = localStorage.getItem(userData()+" : "+nope);
       const split = currentListItems.split(',');
-      console.log(split[e]);
+      for (var t = 0; t < split.length; t++) {
+        console.log(split[t]);
+        let itemLista = document.createTextNode(split[t]);
+        let li = document.createElement('li');
+        li.appendChild(itemLista);
+        ol.appendChild(li);
+      }
     }
   }
 }
