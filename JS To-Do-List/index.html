@@ -39,7 +39,7 @@
 
     <!--- Creacion del Dashboard ----->
     <div class="dashboard hidden" id="dashboard">
-      <h4 id="userDashboard"></h4> <p onclick="window.location.reload(true)">log out</p>
+      <h4 id="userDashboard"></h4> <p onclick="window.location.reload(true)">log out</p><p id="accountSettings1" onclick="accountSettings();">Account Settings</p>
       <h2>LISTS : </h2>
       <div class="list_div" id="list_div"></div>
       <button type="button" name="button" onclick=newList(); id="createNew">Create New List</button>
@@ -47,7 +47,7 @@
 
     <!-- Show List () -->
     <div id="showList" class="showList hidden">
-      <h4 id="userShowList"></h4> <p onclick="window.location.reload(true)">log out</p>
+      <h4 id="userShowList"></h4> <p onclick="window.location.reload(true)">log out</p></p><p onclick="accountSettings();">Account Settings</p>
       <h2 id="showCurrentList">LIST : </h2>
       <ol id="ol">
       </ol>
@@ -67,8 +67,11 @@
 
     <!--- Creacion de la seccion de usuarios ----->
     <div class="users hidden" id="users" >
-    <button type="button" id="logOut">Log Out</button>
-    <button type="button" id="accountSettings">Account Settings</button>
+      <h3 id="currentUser"></h3>
+      <h3 id="currentPass"></h3>
+
+    <!-- <button type="button" id="logOut">Log Out</button>
+    <button type="button" id="accountSettings">Account Settings</button> -->
     </div>
 
   </body>

@@ -82,6 +82,8 @@ let log_out = (e) =>{
   userDash.appendChild(textInside);
   userList.appendChild(textInside2);
   console.log(' User : '+e);
+  let accountSettings1 = document.getElementById('accountSettings1');
+  let accountSettings2 = document.getElementById('accountSettings2');
   separator(userList);
   separator(userDash);
 }
@@ -141,7 +143,7 @@ let show_click_list = (e) => {
       separator(current_id);
       let nope = listUserName[e];
       let currentListItems = localStorage.getItem(userData()+" : "+nope);
-      const split = currentListItems.split(',');
+      const split = currentListItems.split(','); // separando los items para poder mostrarlos en forma individual con la lista
       for (var t = 0; t < split.length; t++) {
         console.log(split[t]);
         let itemLista = document.createTextNode(split[t]);
@@ -151,6 +153,12 @@ let show_click_list = (e) => {
       }
     }
   }
+}
+
+let accountSettings = () =>{
+  users.classList.remove('hidden');
+  dashboard.classList.add('hidden');
+  showList.classList.add('hidden');
 }
 
 //Buton to create a new list
