@@ -197,15 +197,16 @@ let update_data = () =>{
   //add user : list -> items
   let user_list = JSON.parse(localStorage.getItem(userData()));
   localStorage.setItem(key, JSON.stringify(user_list));
-  console.log(user_list.length);
-  console.log(user_list[0]);
+  // for to get all the items namelist + items values and creating new ones with the update user,
   for (var i = 0; i < user_list.length; i++) {
     let t = user_list[i];
     let currentList = localStorage.getItem(userData()+" : "+t);
     localStorage.setItem(key+" : "+t, currentList);
+    localStorage.removeItem(userData()+" : "+t);
     console.log(t);
     console.log(currentList);
   }
+  localStorage.removeItem(userData()); // and finally elimite the old user data ( name : all lists )
 }
 //Buton to create a new list
 let newList = (e) => {
