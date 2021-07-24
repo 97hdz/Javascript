@@ -6,6 +6,8 @@ let loginSection = document.getElementById("loginSection");
 let dashboard = document.getElementById('dashboard');
 let lists = document.getElementById('lists');
 const buttons = document.getElementById('index');
+let accountSettings1 = document.getElementById('accountSettings1');
+let accountSettings2 = document.getElementById('accountSettings2');
 //Functions to show the form depending on wich button you click
 let signupForm = () => {
   signupSection.classList.remove("hidden")
@@ -49,7 +51,7 @@ let saveInput = (event) => {
   localStorage.setItem('passData', JSON.stringify(old_pass));
 }
 //Function to control the email/pass input on login with all the data on the localStorage
-let control = (event) => {
+let control = () => {
   // The input
   const email = document.getElementById('loginEmail').value;
   const pass = document.getElementById('loginPassword').value;
@@ -82,14 +84,12 @@ let log_out = (e) =>{
   userDash.appendChild(textInside);
   userList.appendChild(textInside2);
   console.log(' User : '+e);
-  let accountSettings1 = document.getElementById('accountSettings1');
-  let accountSettings2 = document.getElementById('accountSettings2');
   separator(userList);
   separator(userDash);
 }
 
 //creation of the unique key of every user
-let userData = (e) => {
+let userData = () => {
   let email = document.getElementById('loginEmail').value;
   let pass = document.getElementById('loginPassword').value;
   var key = email+pass;
@@ -131,6 +131,7 @@ let show_click_list = (e) => {
   let listUserName = JSON.parse(localStorage.getItem(userData()));
   let numero = listUserName.length;
   let ol = document.getElementById('ol');
+
   for (var i = 0; i < numero ; i++) { // verify what number was passed by the other Function
     if (e==i) {
       let listnameInput = document.getElementById('listname').value;
@@ -156,11 +157,43 @@ let show_click_list = (e) => {
 }
 
 let accountSettings = () =>{
+  //getting these two values to change it later
+  let email = document.getElementById('loginEmail').value;
+  let pass = document.getElementById('loginPassword').value;
   users.classList.remove('hidden');
   dashboard.classList.add('hidden');
   showList.classList.add('hidden');
+  //displaying the values on the html
+  let currentUser = document.getElementById('currentUser');
+  let currentPass = document.getElementById('currentPass');
+  let userInsideText = document.createTextNode(email);
+  let passInsideText = document.createTextNode(pass);
+  currentUser.appendChild(userInsideText);
+  separator(currentUser);
+  currentPass.appendChild(passInsideText);
+  console.log(email);
+  //geting the inputs for the update
+  // let updateUser = document.getElementById('updateUser').value;
+  // let updatePass = document.getElementById('updatePass').value;
 }
 
+let update_data = () =>{
+  let email = document.getElementById('loginEmail').value;
+  let pass = document.getElementById('loginPassword').value;
+  let updateUser = document.getElementById('updateUser').value;
+  let updatePass = document.getElementById('updatePass').value;
+  //getting the localStorage values
+  let allUsersMail = JSON.parse(localStorage.getItem('emailData'));
+  let allUsersPass = JSON.parse(localStorage.getItem('passData'));
+  //getting the right index value
+  let n = allUsersMail.indexOf(email);
+  allUsersMail[n]=updateUser;
+  allUsersPass[n]=updatePass;
+  //Changing data in localStorage
+  localStorage.setItem('passData', JSON.stringify(allUsersPass));
+  localStorage.setItem('emailData', JSON.stringify(allUsersMail));
+
+}
 //Buton to create a new list
 let newList = (e) => {
   dashboard.classList.add('hidden');
