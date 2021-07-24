@@ -59,12 +59,12 @@ let control = () => {
   //so there's no need to use the split method to transform String -> Array
   let allEmails = JSON.parse(localStorage.getItem('emailData'));
   let allPasswords = JSON.parse(localStorage.getItem('passData'));
-  console.log(email);
-  console.log(allEmails);
+  // console.log(email);
+  // console.log(allEmails);
   //the FOR to verify the input with the localStorage data
   for (var i = 0; i < allEmails.length; i++) {
     if (email == allEmails[i] && pass == allPasswords[i]) {
-      console.log('la mail : '+ email +' e la password : '+ pass +' sono gli stessi');
+      // console.log('la mail : '+ email +' e la password : '+ pass +' sono gli stessi');
       var success=true;
       seeDashboard();
       userData();
@@ -83,7 +83,7 @@ let log_out = (e) =>{
   let textInside2 = document.createTextNode(e);
   userDash.appendChild(textInside);
   userList.appendChild(textInside2);
-  console.log(' User : '+e);
+  // console.log(' User : '+e);
   separator(userList);
   separator(userDash);
 }
@@ -119,7 +119,7 @@ let dashboard_list_creation = () =>{
       listTitle.setAttribute('onclick','show_click_list('+i+');'); // function to get the number that will be equal to lits array postion
       listTitle.setAttribute('id',i)
       listTitle.appendChild(titleInside);
-      console.log(titleInside.nodeValue);
+      // console.log(titleInside.nodeValue);
       //Separator
       separator(listTitle);
       //creating Listeners
@@ -137,6 +137,7 @@ let show_click_list = (e) => {
       let listnameInput = document.getElementById('listname').value;
       let showList = document.getElementById('showList');
       let current_id = document.getElementById('showCurrentList');
+      let buttonEdit = document.getElementById('buttonEditList');
       dashboard.classList.add('hidden');
       showList.classList.remove('hidden');
       let currentList = document.createTextNode(listUserName[e]);
@@ -144,9 +145,11 @@ let show_click_list = (e) => {
       separator(current_id);
       let nope = listUserName[e];
       let currentListItems = localStorage.getItem(userData()+" : "+nope);
+      //passing the index value to update the name of the list
+      buttonEdit.setAttribute('onclick','edit_list('+i+')')
       const split = currentListItems.split(','); // separando los items para poder mostrarlos en forma individual con la lista
       for (var t = 0; t < split.length; t++) {
-        console.log(split[t]);
+        // console.log(split[t]);
         let itemLista = document.createTextNode(split[t]);
         let li = document.createElement('li');
         li.setAttribute('onclick','add_done('+t+')');
@@ -157,12 +160,68 @@ let show_click_list = (e) => {
   }
 }
 
+let edit_list = (h) => {
+  let lists = document.getElementById('showList');
+  lists.classList.add('hidden');
+  let listedit = document.getElementById('list_edit');
+  listedit.classList.remove('hidden');
+
+  let listUserName = JSON.parse(localStorage.getItem(userData()));
+  // console.log(listUserName[h]);
+  let editCurrentList = document.getElementById('editCurrentList');
+  let insideText = document.createTextNode(listUserName[h]);
+  editCurrentList.appendChild(insideText);
+
+  let button = document.createElement('button');
+  listedit.appendChild(button)
+  let button_text = document.createTextNode('SAVE');
+  button.appendChild(button_text);
+  button.setAttribute('onclick','save_edit_list('+h+')')
+  // console.log(h);
+}
+
+let save_edit_list = (p) => {
+  const email = document.getElementById('loginEmail').value;
+  const pass = document.getElementById('loginPassword').value;
+  const key = email+pass;
+  let listName = JSON.parse(localStorage.getItem(userData()));
+  console.log(listName[p]);
+  let t = listName[p];
+  console.log(t);
+  let newListName = document.getElementById('newListName').value;
+  let existListName = localStorage.getItem(userData()+" : "+listName[p]);
+  //console.log(existListName);
+  //console.log(newListName);
+  // console.log(list);
+  // console.log(existListName);
+  localStorage.setItem(userData()+" : "+newListName, existListName);
+  let all_list = JSON.parse(localStorage.getItem(key));
+  console.log(all_list[p]);
+  //index of value to sub on the main localStorage key : user -> lists
+  all_list[p]=newListName;
+  localStorage.setItem(key, JSON.stringify(all_list));
+  //localStorage.removeItem(userData()+" : "+listName[p]);
+  // console.log(existListName);
+
+}
+
 let add_done = (number) =>{
   let list_items = document.getElementsByTagName('li');
-  console.log(list_items[number].textContent);
-  list_items[number].classList.add('done');
-  let done = document.createTextNode('- DONE')
-  list_items[number].appendChild(done);
+  let currentITEM = list_items[number];
+  console.log(currentITEM.textContent);
+  console.log(currentITEM.classList);
+
+  if (currentITEM.classList == "") {
+    currentITEM.classList.add('done');
+  } else {
+    currentITEM.classList.remove('done');
+  }
+}
+
+let check_done = () => {
+  let itemDone = getElementsByClassName('done');
+  let textDone = document.createTextNode(' - DONE');
+  itemDone.appendChild(textDone);
 }
 
 let accountSettings = () =>{
@@ -180,7 +239,6 @@ let accountSettings = () =>{
   currentUser.appendChild(userInsideText);
   separator(currentUser);
   currentPass.appendChild(passInsideText);
-  console.log(email);
   //geting the inputs for the update
   // let updateUser = document.getElementById('updateUser').value;
   // let updatePass = document.getElementById('updatePass').value;
@@ -212,8 +270,8 @@ let update_data = () =>{
     let currentList = localStorage.getItem(userData()+" : "+t);
     localStorage.setItem(key+" : "+t, currentList);
     localStorage.removeItem(userData()+" : "+t);
-    console.log(t);
-    console.log(currentList);
+    // console.log(t);
+    // console.log(currentList);
   }
   localStorage.removeItem(userData()); // and finally elimite the old user data ( name : all lists )
 }

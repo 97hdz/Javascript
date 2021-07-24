@@ -24,3 +24,8 @@ body {
 h2 {
   font-style: bold;
 }
+
+.done {
+  font-style: italic;
+  color : #ffcc99;
+}

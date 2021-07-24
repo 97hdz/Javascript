@@ -49,6 +49,7 @@
     <div id="showList" class="showList hidden">
       <h4 id="userShowList"></h4> <p onclick="window.location.reload(true)">log out</p></p><p onclick="accountSettings();">Account Settings</p>
       <h2 id="showCurrentList">LIST : </h2>
+      <button type="button" id="buttonEditList">Edit List</button>
       <ol id="ol">
       </ol>
     </div>
@@ -59,10 +60,16 @@
       <input id="listname" placeholder="List Name">
       <input class="inputItem" placeholder="item">
       <!-- <button onclick=lessItems();>Less Items</button> -->
-      <button type="button" id="editList">Edit List</button>
+      <!-- <button type="button" id="editList">Edit List</button> -->
       <button onclick=listAndItems();>Save</button>
     </form>
     <button onclick=moreItems();>More Items</button>
+    </div>
+
+    <!-- Creacion de la pagina de edicion de la lista -->
+    <div class="list_edit hidden" id="list_edit">
+        <h3 id="editCurrentList"></h3>
+        <h3>New list name :  <input id="newListName" placeholder="List Name"></h3>
     </div>
 
     <!--- Creacion de la seccion de usuarios ----->
@@ -71,7 +78,7 @@
       <h3 id="currentPass"></h3>
       <h2>UPDATE YOUR DATA : </h2>
       <input id="updateUser" placeholder="new username">
-      <input id="updatePass" placeholder="new password">
+      <input id="updatePass" type="password" placeholder="new password">
       <button onclick="window.location.reload(true)">Home</button>
       <button onclick=update_data();>Save</button>
     <!-- <button type="button" id="logOut">Log Out</button>
