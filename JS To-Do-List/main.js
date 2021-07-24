@@ -149,11 +149,20 @@ let show_click_list = (e) => {
         console.log(split[t]);
         let itemLista = document.createTextNode(split[t]);
         let li = document.createElement('li');
+        li.setAttribute('onclick','add_done('+t+')');
         li.appendChild(itemLista);
         ol.appendChild(li);
       }
     }
   }
+}
+
+let add_done = (number) =>{
+  let list_items = document.getElementsByTagName('li');
+  console.log(list_items[number].textContent);
+  list_items[number].classList.add('done');
+  let done = document.createTextNode('- DONE')
+  list_items[number].appendChild(done);
 }
 
 let accountSettings = () =>{
