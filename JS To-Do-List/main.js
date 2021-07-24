@@ -194,10 +194,18 @@ let update_data = () =>{
   //Changing data in localStorage
   localStorage.setItem('passData', JSON.stringify(allUsersPass));
   localStorage.setItem('emailData', JSON.stringify(allUsersMail));
-
+  //add user : list -> items
   let user_list = JSON.parse(localStorage.getItem(userData()));
   localStorage.setItem(key, JSON.stringify(user_list));
-
+  console.log(user_list.length);
+  console.log(user_list[0]);
+  for (var i = 0; i < user_list.length; i++) {
+    let t = user_list[i];
+    let currentList = localStorage.getItem(userData()+" : "+t);
+    localStorage.setItem(key+" : "+t, currentList);
+    console.log(t);
+    console.log(currentList);
+  }
 }
 //Buton to create a new list
 let newList = (e) => {
@@ -213,6 +221,7 @@ let moreItems = (e) => {
 }
 //creation of list to the localStorage
 const listAndItems = () => {
+
   let parentList = document.getElementById('addList');
   let listnameInput = document.getElementById('listname').value;
   let newitems = []; //the container of all the items from the respective list
