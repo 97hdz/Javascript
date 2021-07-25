@@ -1,13 +1,85 @@
 //Variables
+const buttons = document.getElementById('index');
+const index_page =
+  '<button type="button" id="signupButton"> Sign Up </button>'+
+  '<button type="button" id="loginButton"> Log In </button>';
+buttons.innerHTML = index_page;
+
+let signupSection = document.getElementById("signupSection");
+const signUp_page =
+  '<form class="signupForm" id="signupForm" action="" method="post">'+
+    '<input id="signupName" placeholder="Your name" required><br>'+
+    '<input id="signupLastname" placeholder="Your lastname" required><br>'+
+    '<input id="signupEmail" placeholder="Your email" required><br>'+
+    '<input id="signupPassword" type="password" placeholder="Your Password" required><br>'+
+    '<h3> I agree to the Terms of Use  <input id="signupName" type="checkbox" required></h3>'+
+    '<button type="button" id="submit" onclick=saveInput();>Submit</button>'+
+    '<button><a href="index.html" style="text-decoration:none">Go back</a></button>'+
+  '</form>';
+signupSection.innerHTML = signUp_page;
+
+let loginSection = document.getElementById("loginSection");
+const logIn_page =
+  '<form class="loginForm" id="loginForm" action="index.html" method="post">'+
+    '<input id="loginEmail" placeholder="Your email"><br>'+
+    '<input id="loginPassword" type="password" placeholder="Your Password"><br>'+
+    '<button type="button" id="submit" onclick=control();>Submit</button>'+
+    '<button><a href="index.html" style="text-decoration:none">Go back</a></button>'+
+  '</form>';
+loginSection.innerHTML = logIn_page;
+
+var namee = 'Christian';
+let dashboard = document.getElementById('dashboard');
+const dashboard_page =
+  '<h4 id="userDashboard"></h4> <p onclick="window.location.reload(true)">log out</p><p onclick="accountSettings();">Account Settings</p>'+
+  '<h2>LISTS ${name22} : </h2>'+
+  '<div class="list_div" id="list_div"></div>'+
+  '<button type="button" name="button" onclick=newList(); id="createNew">Create New List</button>';
+dashboard.innerHTML = dashboard_page;
+console.log(` ${namee} : tiene 23 anios`);
+
+let showList = document.getElementById('showList');
+const showList_page =
+  '<h4 id="userShowList"></h4> <p onclick="window.location.reload(true)">log out</p></p><p onclick="accountSettings();">Account Settings</p>'+
+  '<h2 id="showCurrentList">LIST : </h2>'+
+  '<button type="button" id="buttonEditList">Edit List</button>'+
+  '<ol id="ol">'+
+  '</ol>';
+showList.innerHTML = showList_page;
+
+let lists = document.getElementById('lists');
+const lists_page =
+  '<form class="addList" id="addList" method="post">'+
+    '<input id="listname" placeholder="List Name">'+
+    '<input class="inputItem" placeholder="item">'+
+    '<button onclick=listAndItems();>Save</button>'+
+  '</form>'+
+  '<button onclick=moreItems();>More Items</button>';
+lists.innerHTML = lists_page;
+
+let listedit = document.getElementById('list_edit');
+const listEdit_page =
+  '<h3 id="editCurrentList"></h3>'+
+  '<h3>New list name :  <input id="newListName" placeholder="List Name"></h3>';
+listedit.innerHTML = listEdit_page;
+
+let users = document.getElementById('users');
+const users_page =
+  '<h3 id="currentUser"></h3>'+
+  '<h3 id="currentPass"></h3>'+
+  '<h2>UPDATE YOUR DATA : </h2>'+
+  '<input id="updateUser" placeholder="new username">'+
+  '<input id="updatePass" type="password" placeholder="new password">'+
+  '<button onclick="window.location.reload(true)">Home</button>'+
+  '<button onclick=update_data();>Save</button>';
+  users.innerHTML = users_page;
+
 let signupButton = document.getElementById("signupButton");
 let loginButton = document.getElementById("loginButton");
-let signupSection = document.getElementById("signupSection");
-let loginSection = document.getElementById("loginSection");
-let dashboard = document.getElementById('dashboard');
-let lists = document.getElementById('lists');
-const buttons = document.getElementById('index');
 let accountSettings1 = document.getElementById('accountSettings1');
 let accountSettings2 = document.getElementById('accountSettings2');
+
+
 //Functions to show the form depending on wich button you click
 let signupForm = () => {
   signupSection.classList.remove("hidden")
@@ -196,7 +268,6 @@ let save_edit_list = (p) => {
   // console.log(existListName);
   localStorage.setItem(userData()+" : "+newListName, existListName);
   let all_list = JSON.parse(localStorage.getItem(key));
-  console.log(all_list[p]);
   //index of value to sub on the main localStorage key : user -> lists
   all_list[p]=newListName;
   localStorage.setItem(key, JSON.stringify(all_list));
