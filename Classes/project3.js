@@ -38,20 +38,17 @@ class Elevator {
     this.isCall = true;
   }
   up(goToUp){
-    if (this.isCall) {
-      console.log(`${this.elevator} is going up, currently at ${this.currentFloor+1}`);
+    for (var i = this.currentFloor; i <= goToUp; i++) {
+      console.log(`${this.elevator} is going up, currently at ${this.currentFloor}`);
+      this.currentFloor += 1;
       this.time += 1;
-    } else {
-      console.log(`You have to call the elevator first`);
     }
+    console.log(`total time : ${this.time}`);
   }
   down(goToDown){
-    if (this.isCall) {
-      console.log(`${this.elevator} is going down, currently at ${this.currentFloor-1}`);
-      this.time += 1;
-    } else {
-      console.log(`You have to call the elevator first`);
-    }
+    console.log(`${this.elevator} is going up, currently at ${this.currentFloor-1}`);
+    this.currentFloor -= 1;
+    this.time += 1;
   }
 }
 
@@ -71,19 +68,25 @@ class ElevatorA extends Elevator {
     this.currentFloor = passengerFloor;
   }
   up(goToUp){
-    super.up(goToUp)
-    if (this.currentFloor > 8 && this.isCall) {
-      console.log(`you're currently at ${this.currentFloor} you cannot go up`);
+    if (this.isCall) {
+      if (this.currentFloor < 9) {
+        super.up(goToUp)
+      } else {
+        console.log(` ERROR : you're currently at '${this.currentFloor} : The Pentahouse' you can only go down`);
+      }
     } else {
-      this.currentFloor += 1;
+      console.log(`${this.elevator} has not been called`);
     }
   }
   down(goToDown){
-    super.down(goToDown)
-    if (this.currentFloor == -1 ) {
-      console.log(`you're currently at ${this.currentFloor} you cannot go down`);
+    if (this.isCall) {
+      if (this.currentFloor > -1) {
+        super.down(goToDown)
+      } else {
+        console.log(` ERROR : you're currently at '${this.currentFloor} : The Basement' you can only go up`);
+      }
     } else {
-      this.currentFloor -= 1;
+      console.log(`${this.elevator} has not been called`);
     }
   }
 }
@@ -99,5 +102,5 @@ class ElevatorB extends Elevator {
 const person1 = new ElevatorA ();
 const person2 = new ElevatorB ();
 
-person1.call(9);
-person1.up();
+person1.call(1);
+person1.up(3);
